@@ -16,6 +16,17 @@ go build && ./simple-tiktok
 或者go build之后，会生成一个simple-tiktok.exe，点击运行也行
 ```
 
+### 项目架构
+
+controller：控制层，主函数中的路由调用
+dao：连接数据库，对数据库进行操作
+model：对应数据库中的每个实体
+public：存储静态资源
+
+main.go：主函数
+router.go：初始化路由
+
+
 ### 功能说明
 
 接口功能不完善，仅作为示例
