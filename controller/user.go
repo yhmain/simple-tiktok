@@ -1,9 +1,10 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"sync/atomic"
+
+	"github.com/gin-gonic/gin"
 )
 
 // usersLoginInfo use map to store user info, and key is username+password for demo
@@ -15,6 +16,13 @@ var usersLoginInfo = map[string]User{
 		Name:          "zhanglei",
 		FollowCount:   10,
 		FollowerCount: 5,
+		IsFollow:      true,
+	},
+	"admin123456": {
+		Id:            2,
+		Name:          "admin",
+		FollowCount:   13,
+		FollowerCount: 51,
 		IsFollow:      true,
 	},
 }

@@ -1,4 +1,4 @@
-module github.com/RaymondCode/simple-demo
+module github.com/yhmain/simple-tiktok //修改为yhmain/simple-tiktok
 
 go 1.17
 
