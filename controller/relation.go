@@ -1,8 +1,9 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type UserListResponse struct {
@@ -27,7 +28,7 @@ func FollowList(c *gin.Context) {
 		Response: Response{
 			StatusCode: 0,
 		},
-		UserList: []User{DemoUser},
+		UserList: []User{DemoUsers[0]},
 	})
 }
 
@@ -37,6 +38,6 @@ func FollowerList(c *gin.Context) {
 		Response: Response{
 			StatusCode: 0,
 		},
-		UserList: []User{DemoUser},
+		UserList: []User{DemoUsers[0]},
 	})
 }

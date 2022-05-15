@@ -16,6 +16,9 @@ go build && ./simple-tiktok
 或者go build之后，会生成一个simple-tiktok.exe，点击运行也行
 ```
 
+局域网共享资源  
+http-server: https://www.cnblogs.com/2944014083-zhiyu/p/14873935.html
+
 ### 项目架构
 
 controller：控制层，主函数中的路由调用
