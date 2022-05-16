@@ -17,7 +17,7 @@ func initRouter(r *gin.Engine) {
 	apiRouter.POST("/user/register/", controller.Register) //用户注册：2022/05/16完成
 	apiRouter.POST("/user/login/", controller.Login)       //用户登录：2022/05/16完成
 	apiRouter.POST("/publish/action/", controller.Publish)
-	apiRouter.GET("/publish/list/", controller.PublishList)
+	apiRouter.GET("/publish/list/", controller.PublishList) //用户发布的视频列表：2022/05/16完成
 
 	// extra apis - I
 	apiRouter.POST("/favorite/action/", controller.FavoriteAction)

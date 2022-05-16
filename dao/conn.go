@@ -7,15 +7,6 @@ import (
 	"gorm.io/gorm"
 )
 
-//数据库连接的常量
-const (
-	USER          = "root"
-	PASSWORD      = "123456"
-	SERVERIP      = "127.0.0.1"
-	PORT          = "3306"
-	DATABASE_NAME = "tiktok"
-)
-
 var MyDB *gorm.DB //全局变量，数据库连接
 
 func init() {

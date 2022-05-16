@@ -1,10 +1,11 @@
 package controller
 
 import (
+	"github.com/yhmain/simple-tiktok/model"
 	"github.com/yhmain/simple-tiktok/service"
 )
 
-var DemoVideos = []Video{
+var DemoVideos = []model.Video{
 	{
 		Id:            1,
 		User:          DemoUsers[0],
@@ -34,7 +35,7 @@ var DemoVideos = []Video{
 	},
 }
 
-var DemoComments = []Comment{
+var DemoComments = []model.Comment{
 	{
 		Id:         1,
 		User:       DemoUsers[0],
@@ -43,7 +44,7 @@ var DemoComments = []Comment{
 	},
 }
 
-var DemoUsers = []User{
+var DemoUsers = []model.User{
 	{
 		Id:            1,
 		Name:          "TestUser",

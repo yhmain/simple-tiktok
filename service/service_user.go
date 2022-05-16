@@ -8,18 +8,18 @@ import (
 )
 
 //分布式id生成器
-var idGen *idworker.IdWorker
+var userIDGen *idworker.IdWorker
 
 //ID生成器的初始化
 func init() {
-	idGen = &idworker.IdWorker{}
-	idGen.InitIdWorker(1, 1) //WORKERID位数 (用于对工作进程进行编码), 数据中心ID位数 (用于对数据中心进行编码)
+	userIDGen = &idworker.IdWorker{}
+	userIDGen.InitIdWorker(1, 1) //WORKERID位数 (用于对工作进程进行编码), 数据中心ID位数 (用于对数据中心进行编码)
 }
 
 //生成新的用户ID
 //失败则返回-1
 func GetNewUserID() int64 {
-	id, err := idGen.NextId() //生成新ID
+	id, err := userIDGen.NextId() //生成新ID
 	if err != nil {
 		return -1
 	}
