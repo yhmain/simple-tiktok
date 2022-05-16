@@ -1,9 +1,11 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 type FeedResponse struct {
@@ -14,9 +16,12 @@ type FeedResponse struct {
 
 // Feed same demo video list for every request
 func Feed(c *gin.Context) {
+	var videos = SelectAllVideos()
+	fmt.Printf("%v\n", videos)
 	c.JSON(http.StatusOK, FeedResponse{
 		Response:  Response{StatusCode: 0},
 		VideoList: DemoVideos,
-		NextTime:  time.Now().Unix(),
+		// VideoList: videos,
+		NextTime: time.Now().Unix(),
 	})
 }

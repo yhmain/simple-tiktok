@@ -1,13 +1,9 @@
 package controller
 
-const (
-	SERVER_STATIC_PATH = "http://192.168.1.108:8081/"
-)
-
 var DemoVideos = []Video{
 	{
 		Id:            1,
-		Author:        DemoUsers[0],
+		User:          DemoUsers[0],
 		PlayUrl:       "https://www.w3schools.com/html/movie.mp4",
 		CoverUrl:      "https://cdn.pixabay.com/photo/2016/03/27/18/10/bear-1283347_1280.jpg",
 		FavoriteCount: 0,
@@ -16,18 +12,18 @@ var DemoVideos = []Video{
 	},
 	{
 		Id:            2,
-		Author:        DemoUsers[1],
-		PlayUrl:       SERVER_STATIC_PATH + "bear.mp4",
-		CoverUrl:      SERVER_STATIC_PATH + "bear-1283347_1280.jpg",
+		User:          DemoUsers[1],
+		PlayUrl:       PREFIX_VIDEOS + "bear.mp4",
+		CoverUrl:      PREFIX_COVERS + "bear.jpg",
 		FavoriteCount: 2,
 		CommentCount:  2,
 		IsFavorite:    false,
 	},
 	{
 		Id:            3,
-		Author:        DemoUsers[2],
-		PlayUrl:       SERVER_STATIC_PATH + "maxclub.mp4",
-		CoverUrl:      SERVER_STATIC_PATH + "long.jpeg",
+		User:          DemoUsers[2],
+		PlayUrl:       PREFIX_VIDEOS + "maxclub.mp4",
+		CoverUrl:      PREFIX_COVERS + "long.jpeg",
 		FavoriteCount: 3,
 		CommentCount:  3,
 		IsFavorite:    false,
