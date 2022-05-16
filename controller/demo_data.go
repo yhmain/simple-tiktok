@@ -14,7 +14,7 @@ var DemoVideos = []Video{
 		Id:            2,
 		User:          DemoUsers[1],
 		PlayUrl:       "https://www.w3schools.com/html/movie.mp4",
-		CoverUrl:      PREFIX_COVERS + "bear.jpg",
+		CoverUrl:      "https://cdn.pixabay.com/photo/2016/03/27/18/10/bear-1283347_1280.jpg",
 		FavoriteCount: 2,
 		CommentCount:  2,
 		IsFavorite:    false,
