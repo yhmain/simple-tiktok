@@ -23,7 +23,7 @@ func Feed(c *gin.Context) {
 	latest_time, err := strconv.ParseInt(t, 10, 64) //string转化为int64
 	if err != nil {
 		c.JSON(http.StatusOK, FeedResponse{
-			Response:  Response{StatusCode: -1}, //失败
+			Response:  Response{StatusCode: -1, StatusMsg: "非法的时间戳！"}, //失败
 			VideoList: nil,
 			NextTime:  time.Now().Unix(),
 		})
@@ -32,7 +32,7 @@ func Feed(c *gin.Context) {
 			latest_time = time.Now().Unix()
 		}
 		//调用service层，获取数据
-		var videos = service.SelectAllVideos(latest_time)
+		var videos = service.SelectVideosByTime(latest_time)
 		c.JSON(http.StatusOK, FeedResponse{
 			Response:  Response{StatusCode: 0}, //成功
 			VideoList: videos,

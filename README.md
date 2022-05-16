@@ -21,10 +21,11 @@ http-server: https://www.cnblogs.com/2944014083-zhiyu/p/14873935.html
 
 ### 项目架构
 
-controller：控制层，主函数中的路由调用
-dao：连接数据库，对数据库进行操作
-model：对应数据库中的每个实体
-public：存储静态资源
+controller：控制层，主函数中的路由调用  
+service：逻辑层，处理核心业务的逻辑输出  
+dao：连接数据库，对数据库进行操作  
+model：对应数据库中的每个实体  
+public：存储静态资源  
 
 main.go：主函数
 router.go：初始化路由

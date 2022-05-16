@@ -34,7 +34,7 @@ func init() {
 		fmt.Println("数据库连接失败", err)
 		return
 	}
-	fmt.Println("连接数据库成功")
+	fmt.Println("conn.go：连接数据库成功")
 }
 
 // func GetDB() *gorm.DB {
