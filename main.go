@@ -16,24 +16,3 @@ func main() {
 	// 命令行运行：go build && ./simple-tiktok
 	r.Run(SERVER_IP)
 }
-
-// package main
-
-// import (
-// 	"fmt"
-
-// 	"github.com/yhmain/simple-tiktok/controller"
-// )
-
-// func main() {
-// 	//查询所有用户
-// 	for _, v := range controller.SelectAllUsers() {
-// 		fmt.Printf("%v\n", v)
-// 	}
-
-// 	//查询所有视频
-// 	for _, v := range controller.SelectAllVideos() {
-// 		fmt.Printf("%v\n", v)
-// 	}
-
-// }

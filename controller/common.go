@@ -3,8 +3,8 @@ package controller
 // omitempty: 如果信息不存在，则转化成json时不包含默认值
 
 type Response struct {
-	StatusCode int32  `json:"status_code"`
-	StatusMsg  string `json:"status_msg,omitempty"`
+	StatusCode int32  `json:"status_code"`          //状态码
+	StatusMsg  string `json:"status_msg,omitempty"` //返回状态描述
 }
 
 //结构体名称+ID 即可设置外键
