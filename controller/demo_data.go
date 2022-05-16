@@ -1,5 +1,9 @@
 package controller
 
+import (
+	"github.com/yhmain/simple-tiktok/service"
+)
+
 var DemoVideos = []Video{
 	{
 		Id:            1,
@@ -13,8 +17,8 @@ var DemoVideos = []Video{
 	{
 		Id:            2,
 		User:          DemoUsers[1],
-		PlayUrl:       PREFIX_VIDEOS + "bear.mp4",
-		CoverUrl:      PREFIX_COVERS + "bear.jpg",
+		PlayUrl:       service.PREFIX_VIDEOS + "bear.mp4",
+		CoverUrl:      service.PREFIX_COVERS + "bear.jpg",
 		FavoriteCount: 2,
 		CommentCount:  2,
 		IsFavorite:    false,
@@ -22,8 +26,8 @@ var DemoVideos = []Video{
 	{
 		Id:            3,
 		User:          DemoUsers[2],
-		PlayUrl:       PREFIX_VIDEOS + "maxclub.mp4",
-		CoverUrl:      PREFIX_COVERS + "long.jpeg",
+		PlayUrl:       service.PREFIX_VIDEOS + "maxclub.mp4",
+		CoverUrl:      service.PREFIX_COVERS + "long.jpeg",
 		FavoriteCount: 3,
 		CommentCount:  3,
 		IsFavorite:    false,

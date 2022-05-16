@@ -1,4 +1,6 @@
-package controller
+package service
+
+//service 层 处理核心业务逻辑输出
 
 import (
 	"github.com/yhmain/simple-tiktok/dao"

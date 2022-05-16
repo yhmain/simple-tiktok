@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	SERVER_IP = "192.168.1.108"
+	SERVER_IP = "192.168.1.108:8080"
 )
 
 func main() {
@@ -14,7 +14,7 @@ func main() {
 
 	// listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 	// 命令行运行：go build && ./simple-tiktok
-	r.Run(SERVER_IP + ":8080")
+	r.Run(SERVER_IP)
 }
 
 // package main

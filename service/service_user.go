@@ -1,4 +1,4 @@
-package controller
+package service
 
 import (
 	"github.com/yhmain/simple-tiktok/dao"
