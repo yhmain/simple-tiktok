@@ -1,5 +1,8 @@
  
-[Github地址](https://github.com/yhmain/simple-tiktok)  
+[Github地址](https://github.com/yhmain/simple-tiktok)     
+
+克隆本分支项目：
+`git clone -b yhtest --depth=1 https://github.com/yhmain/simple-tiktok/`
 
 # 项目名称：simple-tiktok
 main 分支
