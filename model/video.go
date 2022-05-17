@@ -4,7 +4,7 @@ package model
 //结构体名称+ID 即可设置外键
 type Video struct {
 	Id            int64  `json:"id,omitempty" gorm:"column:Vid;primary_key"`           //视频主键
-	Detail        string `json:"video_detail,omitempty" gorm:"column:VideoDetail"`     //视频简介
+	Title         string `json:"title,omitempty" gorm:"column:VideoTitle"`             //视频简介、标题
 	PlayUrl       string `json:"play_url,omitempty" gorm:"column:PlayUrl"`             //视频播放地址
 	CoverUrl      string `json:"cover_url,omitempty" gorm:"column:CoverUrl"`           //视频封面地址
 	FavoriteCount int64  `json:"favorite_count,omitempty" gorm:"column:FavoriteCount"` //视频点赞总数

@@ -30,7 +30,7 @@ func GetNewUserID() int64 {
 func SelectUserByName(name string) (model.User, bool) {
 	//调用dao层获取数据
 	var user = dao.SelectUserByName(name)
-	if user.Name == "" { //此时表示该用户名不存在，返回空nil
+	if user.NickName == "" { //此时表示该用户名不存在，返回空nil
 		return user, false
 	}
 	return user, true
@@ -40,7 +40,7 @@ func SelectUserByName(name string) (model.User, bool) {
 func SelectUserByNamePwd(name, pwd string) (model.User, bool) {
 	//调用dao层获取数据
 	var user = dao.SelectUserByNamePwd(name, pwd)
-	if user.Name == "" { //此时表示该用户名不存在，返回空nil
+	if user.NickName == "" { //此时表示该用户名不存在，返回空nil
 		return user, false
 	}
 	return user, true

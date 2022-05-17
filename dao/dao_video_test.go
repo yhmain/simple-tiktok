@@ -25,7 +25,7 @@ func TestSelectVideosByUserID(t *testing.T) {
 
 //测试 插入新发布的视频
 func TestInsertNewVideo(t *testing.T) {
-	err := InsertNewVideo(model.Video{Id: 1000, Detail: "这是第一条视频的内容介绍：XXXX真可爱！", PlayUrl: "bear.mp4", CoverUrl: "bear.jpg", FavoriteCount: 10, CommentCount: 10, IsFavorite: false, CreatedTime: 1652597777, User: model.User{Id: 1, Name: "zhanglei", Password: "douyin", FollowCount: 10, FollowerCount: 10, IsFollow: false}, UserID: 1})
+	err := InsertNewVideo(model.Video{Id: 1000, Title: "这是第一条视频的内容介绍：XXXX真可爱！", PlayUrl: "bear.mp4", CoverUrl: "bear.jpg", FavoriteCount: 10, CommentCount: 10, IsFavorite: false, CreatedTime: 1652597777, User: model.User{Id: 1, NickName: "zhanglei", Password: "douyin", FollowCount: 10, FollowerCount: 10, IsFollow: false}, UserID: 1})
 	var expectedResult error
 	assert.Equal(t, expectedResult, err)
 }

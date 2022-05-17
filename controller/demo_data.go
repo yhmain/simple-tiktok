@@ -47,21 +47,21 @@ var DemoComments = []model.Comment{
 var DemoUsers = []model.User{
 	{
 		Id:            1,
-		Name:          "TestUser",
+		NickName:      "TestUser",
 		FollowCount:   0,
 		FollowerCount: 0,
 		IsFollow:      false,
 	},
 	{
 		Id:            2,
-		Name:          "HaHaUser",
+		NickName:      "HaHaUser",
 		FollowCount:   2,
 		FollowerCount: 2,
 		IsFollow:      false,
 	},
 	{
 		Id:            3,
-		Name:          "WoDeUser",
+		NickName:      "WoDeUser",
 		FollowCount:   3,
 		FollowerCount: 3,
 		IsFollow:      false,

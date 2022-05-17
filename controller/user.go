@@ -79,7 +79,7 @@ func Register(c *gin.Context) {
 		//构造新的用户结构体
 		newUser := model.User{
 			Id:       newUserID,
-			Name:     username,
+			NickName: username,
 			Password: password,
 		}
 		//执行插入操作，加锁
