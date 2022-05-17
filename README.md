@@ -2,7 +2,7 @@
 [Github地址](https://github.com/yhmain/simple-tiktok)     
 
 克隆本分支项目：
-`git clone -b yhtest --depth=1 https://github.com/yhmain/simple-tiktok/`
+`git clone -b main --depth=1 https://github.com/yhmain/simple-tiktok/`
 
 gin-jwt
 
