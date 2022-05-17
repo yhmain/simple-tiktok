@@ -10,7 +10,6 @@ main 分支
 具体功能内容参考飞书说明文档
 https://bytedance.feishu.cn/docx/doxcnbgkMy2J0Y3E6ihqrvtHXPg
 
-Linux系统运行方式：`go build && ./simple-tiktok`  
 ## 项目部署（主要针对Windows系统，Linux类似吧）
 1. 首先通过ipconfig获取本机或者服务器的IP，修改main.go里面的常量SERVER_IP="Your IP:Port"
 2. 为了能在局域网（比如手机，电脑连接同一个Wifi）下**访问共享资源**,可以参考教程[http-server](https://www.cnblogs.com/2944014083-zhiyu/p/14873935.html)，此时在命令行可以看到共享的地址：
@@ -53,7 +52,10 @@ simple-tiktok
 - 关于.apk文件，可以安装在手机上，也可在电脑上安装一个安卓模拟器。  
 这里我使用的是[逍遥模拟器](https://www.xyaz.cn/)
 
+Linux系统运行方式：`go build && ./simple-tiktok`  
+
 ## 项目架构
+![cedd6c1e71611846cc2c1ea1179e7c4.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/394373ff35f94df1a97343901f4d554d~tplv-k3u1fbpfcp-watermark.image?)
 
 controller：控制层，主函数中的路由调用  
 dao：连接数据库，对数据库进行操作  
