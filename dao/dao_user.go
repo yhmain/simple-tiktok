@@ -16,7 +16,7 @@ func SelectAllUsers() []model.User {
 //nil空则表示不存在
 func SelectUserByName(name string) model.User {
 	var user model.User
-	MyDB.Where("UserName=?", name).Find(&user)
+	MyDB.Where("NickName=?", name).Find(&user)
 	return user
 }
 
@@ -24,7 +24,7 @@ func SelectUserByName(name string) model.User {
 //nil空则表示不存在
 func SelectUserByNamePwd(name, pwd string) model.User {
 	var user model.User
-	MyDB.Where("UserName=? AND UserPwd=?", name, pwd).Find(&user)
+	MyDB.Where("NickName=? AND UserPwd=?", name, pwd).Find(&user)
 	return user
 }
 

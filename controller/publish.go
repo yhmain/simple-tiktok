@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -86,31 +85,14 @@ func Publish(c *gin.Context) {
 // PublishList all users have same publish video list
 //获取某用户发布的视频列表
 func PublishList(c *gin.Context) {
-	paramToken := c.Query("token")
-
-	//用户Token 反序列化，获取UserToken结构体
-	var token UserToken
-	json.Unmarshal([]byte(paramToken), &token)
-	user, exist := service.SelectUserByNamePwd(token.Name, token.Password)
-	if !exist {
-		c.JSON(http.StatusOK, VideoListResponse{
-			Response: Response{
-				StatusCode: -1,
-				StatusMsg:  "Token对应的用户不存在！",
-			},
-			VideoList: nil,
-		})
-		return
-	}
+	user := c.MustGet("user").(model.User)
 
 	//调用service 获取该用户发布的视频列表
 	var videos = service.SelectVideosByUserID(user.Id)
 
 	//返回视频列表和状态码
 	c.JSON(http.StatusOK, VideoListResponse{
-		Response: Response{
-			StatusCode: 0,
-		},
+		Response:  Success,
 		VideoList: videos,
 	})
 
