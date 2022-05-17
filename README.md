@@ -4,6 +4,8 @@
 克隆本分支项目：
 `git clone -b yhtest --depth=1 https://github.com/yhmain/simple-tiktok/`
 
+gin-jwt
+
 # 项目名称：simple-tiktok
 main 分支
 最终展示所用，慎改 合并
