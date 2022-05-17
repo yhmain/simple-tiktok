@@ -21,7 +21,7 @@ func SelectVideosByUserID(UserID int64) []model.Video {
 }
 
 //插入新发布的视频
-func InsertNewVideo(video model.Video) error {
-	result := MyDB.Create(&video)
+func InsertNewVideo(video *model.Video) error {
+	result := MyDB.Create(video)
 	return result.Error
 }

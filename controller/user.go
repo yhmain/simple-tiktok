@@ -15,22 +15,23 @@ import (
 // usersLoginInfo use map to store user info, and key is username+password for demo
 // user data will be cleared every time the server starts
 // test data: username=zhanglei, password=douyin
-var usersLoginInfo = map[string]User{
-	"zhangleidouyin": {
-		Id:            1,
-		Name:          "zhanglei",
-		FollowCount:   10,
-		FollowerCount: 5,
-		IsFollow:      true,
-	},
-	"admin123456": {
-		Id:            2,
-		Name:          "admin",
-		FollowCount:   13,
-		FollowerCount: 51,
-		IsFollow:      true,
-	},
-}
+// 准备删除的
+// var usersLoginInfo = map[string]User{
+// 	"zhangleidouyin": {
+// 		Id:            1,
+// 		Name:          "zhanglei",
+// 		FollowCount:   10,
+// 		FollowerCount: 5,
+// 		IsFollow:      true,
+// 	},
+// 	"admin123456": {
+// 		Id:            2,
+// 		Name:          "admin",
+// 		FollowCount:   13,
+// 		FollowerCount: 51,
+// 		IsFollow:      true,
+// 	},
+// }
 
 //用户登录响应体
 type UserLoginResponse struct {
@@ -85,7 +86,7 @@ func Register(c *gin.Context) {
 		//执行插入操作，加锁
 		var mu sync.Mutex
 		mu.Lock()
-		err := service.InsertNewUser(newUser)
+		err := service.InsertNewUser(&newUser) //当调用一个函数时，会对其每一个参数值进行拷贝。这种情况需要用到指针
 		mu.Unlock()
 		//若返回空，则插入数据的时候出现错误
 		if err != nil {

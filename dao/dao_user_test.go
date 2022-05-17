@@ -39,7 +39,7 @@ func TestSelectUserByNamePwd200(t *testing.T) {
 
 //插入新用户
 func TestInsertNewUser(t *testing.T) {
-	err := InsertNewUser(model.User{Id: 1000, NickName: "user1000", Password: "7777909"})
+	err := InsertNewUser(&model.User{Id: 1000, NickName: "user1000", Password: "7777909"})
 	var expectedResult error
 	assert.Equal(t, expectedResult, err)
 }
