@@ -80,7 +80,6 @@ func Publish(c *gin.Context) {
 // PublishList all users have same publish video list
 //获取某用户发布的视频列表
 func PublishList(c *gin.Context) {
-	fmt.Printf("%v\n", 9999999999999)
 	usertoken := c.MustGet("usertoken").(UserToken)
 
 	//调用service 获取该用户发布的视频列表

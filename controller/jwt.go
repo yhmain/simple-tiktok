@@ -65,11 +65,12 @@ func JWTAuthUserToken() func(c *gin.Context) {
 			return
 		}
 		//获取user_id，并与token解析出来的进行对比
+		//在获取publish list时，本来就没有user_id !!!!!
 		paramID := c.Query("user_id")
-		fmt.Printf("user_id: %v\n", paramID)
-		fmt.Printf("token_user_id: %v\n", strconv.FormatInt(claims.UserID, 10))
-		if strconv.FormatInt(claims.UserID, 10) != paramID {
-			fmt.Printf("%v\n", ValidateTokenErr)
+		if paramID != "" && strconv.FormatInt(claims.UserID, 10) != paramID {
+			// fmt.Printf("user_id: %v\n", paramID)
+			// fmt.Printf("token_user_id: %v\n", strconv.FormatInt(claims.UserID, 10))
+			// fmt.Printf("%v\n", ValidateTokenErr)
 			c.JSON(http.StatusOK, ValidateTokenErr) //token校验失败
 			c.Abort()
 			return
