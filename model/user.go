@@ -10,7 +10,7 @@ type User struct {
 	IsFollow      bool   `json:"is_follow,omitempty" gorm:"column:IsFollow"`           //true:已关注，false:未关注
 	CommentCount  int    `json:"comment_count,omitempty" gorm:"column:CommentCount"`   //评论数目
 	IsFocused     bool   `json:"is_favorite,omitempty" gorm:"column:IsFavorite"`       //是否喜欢
-	LikeCount     bool   `json:"favorite_count,omitempty" gorm:"column:FavoriteCount"` //喜欢的人数
+	LikeCount     int    `json:"favorite_count,omitempty" gorm:"column:FavoriteCount"` //表示喜欢的视频数量
 }
 
 //结构体User对应数据库中user表
