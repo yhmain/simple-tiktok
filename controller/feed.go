@@ -23,7 +23,7 @@ func Feed(c *gin.Context) {
 	latest_time, err := strconv.ParseInt(t, 10, 64) //string转化为int64
 	if err != nil {
 		c.JSON(http.StatusOK, FeedResponse{
-			Response:  Response{StatusCode: -1, StatusMsg: "非法的时间戳！"}, //失败
+			Response:  InvalidTimeErr, //失败
 			VideoList: nil,
 			NextTime:  time.Now().Unix(),
 		})
@@ -34,9 +34,9 @@ func Feed(c *gin.Context) {
 		//调用service层，获取数据
 		var videos = service.SelectVideosByTime(latest_time)
 		c.JSON(http.StatusOK, FeedResponse{
-			Response:  Response{StatusCode: 0}, //成功
+			Response:  Success, //成功
 			VideoList: videos,
-			NextTime:  time.Now().Unix(),
+			NextTime:  videos[len(videos)-1].CreatedTime, //本次返回的视频中，发布最早的时间，作为下次请求时的latest_time
 		})
 	}
 }

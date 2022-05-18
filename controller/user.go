@@ -26,20 +26,13 @@ type UserResponse struct {
 func Register(c *gin.Context) {
 	username := c.Query("username")
 	password := c.Query("password")
-	//生成用户鉴权token
-	token, err := GenToken(&UserToken{Name: username, Password: password})
-	if err != nil {
-		c.JSON(http.StatusOK, UserLoginResponse{
-			Response: GenTokenFailedErr,
-			Token:    "",
-		})
-	}
 
 	//首先判断该用户名是否已存在，为了确保用户名是唯一的
 	if _, exist := service.SelectUserByName(username); exist {
 		c.JSON(http.StatusOK, UserLoginResponse{
 			Response: UserAlreadyExistErr,
-			Token:    token,
+			UserId:   -1,
+			Token:    "",
 		})
 	} else {
 		//生成新用户的ID
@@ -47,7 +40,8 @@ func Register(c *gin.Context) {
 		if newUserID == -1 {
 			c.JSON(http.StatusOK, UserLoginResponse{
 				Response: GenNewUserIDErr,
-				Token:    token,
+				UserId:   -1,
+				Token:    "",
 			})
 			return
 		}
@@ -60,16 +54,28 @@ func Register(c *gin.Context) {
 		//执行插入操作，加锁
 		var mu sync.Mutex
 		mu.Lock()
-		err := service.InsertNewUser(&newUser) //当调用一个函数时，会对其每一个参数值进行拷贝。这种情况需要用到指针
+		err := service.InsertNewUser(&newUser) //当调用一个函数时，会对其每一个参数值进行拷贝。这种情况最好用指针
 		mu.Unlock()
-		//若返回空，则插入数据的时候出现错误
+		//若返回空，表示插入数据的时候出现错误
 		if err != nil {
 			c.JSON(http.StatusOK, UserLoginResponse{
 				Response: InsertNewUserErr,
-				Token:    token,
+				UserId:   -1,
+				Token:    "",
 			})
 			return
 		}
+		//生成新用户的鉴权token
+		token, err := GenToken(&UserToken{UserID: newUserID, Name: username, Password: password})
+		if err != nil {
+			c.JSON(http.StatusOK, UserLoginResponse{
+				Response: GenTokenFailedErr,
+				UserId:   -1,
+				Token:    "",
+			})
+			return
+		}
+
 		//否则，返回成功！！！
 		c.JSON(http.StatusOK, UserLoginResponse{
 			Response: Success,
@@ -77,33 +83,39 @@ func Register(c *gin.Context) {
 			Token:    token,
 		})
 	}
+
 }
 
 //用户登录函数，路由
 func Login(c *gin.Context) {
 	username := c.Query("username")
 	password := c.Query("password")
-
-	//生成用户鉴权token
-	token, err := GenToken(&UserToken{Name: username, Password: password})
-	if err != nil {
-		c.JSON(http.StatusOK, UserLoginResponse{
-			Response: GenTokenFailedErr,
-			Token:    "",
-		})
-	}
-
 	//检测 用户名和密码是否正确
 	if user, exist := service.SelectUserByNamePwd(username, password); exist {
+		//校验成功后，生成用户鉴权token
+		token, err := GenToken(&UserToken{UserID: user.Id, Name: username, Password: password})
+		if err != nil {
+			//若生成token出错，则返回错误代码
+			c.JSON(http.StatusOK, UserLoginResponse{
+				Response: GenTokenFailedErr,
+				UserId:   -1,
+				Token:    "",
+			})
+			return
+		}
+
+		//成功获取token
 		c.JSON(http.StatusOK, UserLoginResponse{
-			Response: Success, //成功找到
+			Response: Success,
 			UserId:   user.Id,
 			Token:    token,
 		})
+
 	} else { //用户名或者密码错误
 		c.JSON(http.StatusOK, UserLoginResponse{
 			Response: UserAlreadyExistErr,
-			Token:    token,
+			UserId:   -1,
+			Token:    "",
 		})
 	}
 }
@@ -111,8 +123,16 @@ func Login(c *gin.Context) {
 //输入为用户id和鉴权token，获取该用户信息
 //注意：有中间件已处理
 func UserInfo(c *gin.Context) {
-	user := c.MustGet("user").(model.User)
+	usertoken := c.MustGet("usertoken").(UserToken)
 
+	//按照解析出来的用户名和密码查找
+	user, exist := service.SelectUserByNamePwd(usertoken.Name, usertoken.Password)
+	if !exist {
+		c.JSON(http.StatusOK, UserResponse{
+			Response: UserNotExistErr,
+			User:     user,
+		})
+	}
 	//此时代表成功！
 	c.JSON(http.StatusOK, UserResponse{
 		Response: Success,

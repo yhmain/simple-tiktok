@@ -11,11 +11,6 @@ import (
 	"github.com/yhmain/simple-tiktok/service"
 )
 
-// const (
-// 	PREFIX_VIDEOS string = "http://192.168.1.108:8081/videos/"
-// 	PREFIX_COVERS string = "http://192.168.1.108:8081/covers/"
-// )
-
 //视频列表的响应体
 type VideoListResponse struct {
 	Response
@@ -85,15 +80,15 @@ func Publish(c *gin.Context) {
 // PublishList all users have same publish video list
 //获取某用户发布的视频列表
 func PublishList(c *gin.Context) {
-	user := c.MustGet("user").(model.User)
+	fmt.Printf("%v\n", 9999999999999)
+	usertoken := c.MustGet("usertoken").(UserToken)
 
 	//调用service 获取该用户发布的视频列表
-	var videos = service.SelectVideosByUserID(user.Id)
+	var videos = service.SelectVideosByUserID(usertoken.UserID)
 
 	//返回视频列表和状态码
 	c.JSON(http.StatusOK, VideoListResponse{
 		Response:  Success,
 		VideoList: videos,
 	})
-
 }
