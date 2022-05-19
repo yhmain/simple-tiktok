@@ -31,13 +31,15 @@ const (
 	ValidateTokenCode    = 20005
 
 	InvalidTimeCode = 30001
+
+	TooLongInputCode = 40001
 )
 
 //供其他.go文件使用自定义报错信息
 var (
 	Success         = NewResponse(SuccessCode, "Success")
 	ServiceErr      = NewResponse(ServiceErrCode, "Service is unable to start successfully")
-	UserNotLoginErr = NewResponse(UserNotExistErrCode, "用户还未登录")
+	UserNotLoginErr = NewResponse(UserNotLoginErrCode, "用户还未登录")
 	UserNotExistErr = NewResponse(UserNotExistErrCode, "用户不存在")
 
 	UserAlreadyExistErr = NewResponse(UserAlreadyExistErrCode, "用户名已经存在")
@@ -49,9 +51,10 @@ var (
 	AuthHeaderFormatErr = NewResponse(AuthHeaderFormatCode, "请求头中Auth格式有误")
 	InvalidTokenErr     = NewResponse(InvalidTokenCode, "无效的Token字符串")
 	GenTokenFailedErr   = NewResponse(GenTokenFailedCode, "鉴权Token生成失败")
-	ValidateTokenErr    = NewResponse(GenTokenFailedCode, "Token校验失败")
+	ValidateTokenErr    = NewResponse(ValidateTokenCode, "Token校验失败")
 
-	InvalidTimeErr = NewResponse(GenTokenFailedCode, "非法的时间戳")
+	InvalidTimeErr  = NewResponse(InvalidTimeCode, "非法的时间戳")
+	TooLongInputErr = NewResponse(TooLongInputCode, "输入内容超过长度限制")
 )
 
 //返回一个错误信息的字符串

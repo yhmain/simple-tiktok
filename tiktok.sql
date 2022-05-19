@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 17/05/2022 17:38:45
+ Date: 19/05/2022 19:28:10
 */
 
 SET NAMES utf8mb4;
@@ -45,15 +45,16 @@ INSERT INTO `comments` VALUES (1, '测试评论1', 1652773376, 2, 2);
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
   `Uid` bigint NOT NULL COMMENT '用户id，需要唯一（抖音号）',
-  `NickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名：登录时用，需要唯一',
-  `UserPwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '秘密：登录时用',
-  `FollowCount` int NULL DEFAULT 0 COMMENT '关注数',
+  `NickName` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名：登录时用，需要唯一（长度限制：不超过32个字符）',
+  `UserPwd` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码：登录时用\r\n（长度限制：不超过32个字符）',
+  `FollowCount` int NOT NULL DEFAULT 0 COMMENT '关注数',
   `FollowerCount` int NULL DEFAULT 0 COMMENT '粉丝数',
   `IsFollow` tinyint UNSIGNED NULL DEFAULT 0 COMMENT 'true:已关注，false:未关注',
   `CommentCount` int UNSIGNED NULL DEFAULT 0 COMMENT '评论数目',
   `IsFavorite` tinyint NULL DEFAULT 0 COMMENT '是否喜欢',
   `FavoriteCount` int NULL DEFAULT 0 COMMENT '喜欢的人数',
-  PRIMARY KEY (`Uid`) USING BTREE
+  PRIMARY KEY (`Uid`) USING BTREE,
+  UNIQUE INDEX `UniqueName`(`NickName`) USING BTREE COMMENT '唯一索引'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -61,7 +62,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 'zhanglei', 'douyin', 10, 10, 0, 0, 0, 0);
 INSERT INTO `users` VALUES (2, 'admin', '123456', 20, 20, 0, 0, 0, 0);
-INSERT INTO `users` VALUES (3, 'yuhang', '123456', 30, 30, 0, 0, 0, 0);
+INSERT INTO `users` VALUES (3, 'yuhang', '123456', 30, 30, 1, 25, 1, 23);
 INSERT INTO `users` VALUES (4, 'qinyuan', '123456', 40, 40, 0, 0, 0, 0);
 INSERT INTO `users` VALUES (5, 'wangerke', '123456', 50, 50, 0, 0, 0, 0);
 INSERT INTO `users` VALUES (6, 'zhangzhuoxun', '123456', 60, 60, 0, 0, 0, 0);
@@ -105,8 +106,8 @@ INSERT INTO `videos` VALUES (18, '视频内容：你怎么睡得着的', '你怎
 INSERT INTO `videos` VALUES (19, '视频内容：这一脚踢出了整个盛夏', '这一脚踢出了整个盛夏.mp4', '这一脚踢出了整个盛夏.jpg', 10, 10, 0, 1652590631, 2);
 INSERT INTO `videos` VALUES (20, '视频内容：上帝DJ打碟', '上帝DJ打碟.mp4', '上帝DJ打碟.jpg', 10, 10, 0, 1652590641, 3);
 INSERT INTO `videos` VALUES (21, '清明节', '清明节.mp4', '清明节.jpg', 0, 0, 0, 1652597000, 1);
-INSERT INTO `videos` VALUES (22, '春节', '春节.mp4', '春节.jpg', 0, 0, 0, 1652597010, 2);
-INSERT INTO `videos` VALUES (23, '端午节', '端午节.mp4', '端午节.jpg', 0, 0, 0, 1652597020, 3);
+INSERT INTO `videos` VALUES (22, '春节', '春节.mp4', '春节.jpg', 0, 0, 0, 1652845716, 2);
+INSERT INTO `videos` VALUES (23, '端午节', '端午节.mp4', '端午节.jpg', 0, 0, 0, 1652845715, 3);
 INSERT INTO `videos` VALUES (24, '儿童节', '儿童节.mp4', '儿童节.jpg', 0, 0, 0, 1652597030, 4);
 INSERT INTO `videos` VALUES (25, '护士节', '护士节.mp4', '护士节.jpg', 0, 0, 0, 1652597040, 5);
 INSERT INTO `videos` VALUES (26, '圣诞节', '圣诞节.mp4', '圣诞节.jpg', 0, 0, 0, 1652597050, 6);

@@ -27,6 +27,16 @@ func Register(c *gin.Context) {
 	username := c.Query("username")
 	password := c.Query("password")
 
+	//用户名和密码的长度不应该超过32
+	if len(username) > 32 || len(password) > 32 {
+		c.JSON(http.StatusOK, UserLoginResponse{
+			Response: TooLongInputErr,
+			UserId:   -1,
+			Token:    "",
+		})
+		return
+	}
+
 	//首先判断该用户名是否已存在，为了确保用户名是唯一的
 	if _, exist := service.SelectUserByName(username); exist {
 		c.JSON(http.StatusOK, UserLoginResponse{
