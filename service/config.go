@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	PREFIX_VIDEOS string = "http://192.168.1.108:8081/videos/"
-	PREFIX_COVERS string = "http://192.168.1.108:8081/covers/"
+	PREFIX_VIDEOS string = "http://192.168.1.108:8080/static/videos/"
+	PREFIX_COVERS string = "http://192.168.1.108:8080/static/covers/"
 )
 
 //不定参数函数

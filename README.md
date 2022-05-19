@@ -12,15 +12,13 @@ https://bytedance.feishu.cn/docx/doxcnbgkMy2J0Y3E6ihqrvtHXPg
 
 ## 项目部署（主要针对Windows系统，Linux类似吧）
 1. 首先通过ipconfig获取本机或者服务器的IP，修改main.go里面的常量SERVER_IP="Your IP:Port"
-2. 为了能在局域网（比如手机，电脑连接同一个Wifi）下**访问共享资源**,可以参考教程[http-server](https://www.cnblogs.com/2944014083-zhiyu/p/14873935.html)，此时在命令行可以看到共享的地址：
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/91ff8c1e947142b597447122b6d4e20a~tplv-k3u1fbpfcp-watermark.image?)  
-3. 修改service目录下的config.go里面的常量，举例如下：
-
+2. 修改service目录下的config.go里面的常量，举例如下：
+即设置静态资源的路径
 ```
-PREFIX_VIDEOS string = "http://192.168.1.108:8081/videos/"
-PREFIX_COVERS string = "http://192.168.1.108:8081/covers/"
+PREFIX_VIDEOS string = "http://192.168.1.108:8080/static/videos/"
+PREFIX_COVERS string = "http://192.168.1.108:8080/static/covers/"
 ```
-4. MySQL配置
+3. MySQL配置
 在本地新建MySQL的数据库后，（运行tiktok.sql即可）
 修改dao目录下的config.go文件各个相关属性
 

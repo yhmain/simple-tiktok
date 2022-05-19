@@ -1,13 +1,15 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/yhmain/simple-tiktok/controller"
 )
 
 func initRouter(r *gin.Engine) {
 	// public directory is used to serve static resources
-	r.Static("/static", "./public")
+	r.StaticFS("/static", http.Dir("./public")) //文件夹形式：设置静态资源的存储路径
 
 	apiRouter := r.Group("/douyin")
 
@@ -20,7 +22,7 @@ func initRouter(r *gin.Engine) {
 	apiRouter.GET("/publish/list/", controller.JWTAuthUserToken(), controller.PublishList) //用户发布的视频列表：2022/05/16完成
 
 	// extra apis - I
-	apiRouter.POST("/favorite/action/", controller.FavoriteAction)
+	apiRouter.POST("/favorite/action/", controller.JWTAuthUserToken(), controller.FavoriteAction) //用户的点赞操作
 	apiRouter.GET("/favorite/list/", controller.FavoriteList)
 	apiRouter.POST("/comment/action/", controller.CommentAction)
 	apiRouter.GET("/comment/list/", controller.CommentList)
