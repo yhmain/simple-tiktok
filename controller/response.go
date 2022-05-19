@@ -23,6 +23,7 @@ const (
 	GenNewUserIDErrCode     = 10006
 	InsertNewUserCode       = 10007
 	InvalidUserIDCode       = 10008
+	InvalidVideoIDCode      = 10009
 
 	AuthHeaderEmptyCode  = 20001
 	AuthHeaderFormatCode = 20002
@@ -46,6 +47,7 @@ var (
 	GenNewUserIDErr     = NewResponse(GenNewUserIDErrCode, "生成新用户ID出错")
 	InsertNewUserErr    = NewResponse(InsertNewUserCode, "插入新用户出错")
 	InvalidUserIDErr    = NewResponse(InvalidUserIDCode, "非法的用户ID")
+	InvalidVideoIDErr   = NewResponse(InvalidVideoIDCode, "非法的视频ID或action_type")
 
 	AuthHeaderEmptyErr  = NewResponse(AuthHeaderEmptyCode, "请求头中Auth为空")
 	AuthHeaderFormatErr = NewResponse(AuthHeaderFormatCode, "请求头中Auth格式有误")

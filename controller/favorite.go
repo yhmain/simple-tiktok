@@ -1,20 +1,26 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 // FavoriteAction no practical effect, just check if token is valid
 func FavoriteAction(c *gin.Context) {
-	token := c.Query("token")
+	videoID := c.Query("video_id")
+	actionType := c.Query("action_type") //1-点赞，2-取消点赞
 
-	if _, exist := usersLoginInfo[token]; exist {
-		c.JSON(http.StatusOK, Response{StatusCode: 0})
-	} else {
-		c.JSON(http.StatusOK, Response{StatusCode: 1, StatusMsg: "User doesn't exist"})
+	vid, err1 := strconv.ParseInt(videoID, 10, 64)
+	atype, err2 := strconv.Atoi(actionType)
+	if err1 != nil || err2 != nil { //两个字符串解析是否出错
+		c.JSON(http.StatusOK, InvalidVideoIDErr)
+		return
 	}
+	fmt.Printf("Video ID: %v\n Actio Type: %v\n", vid, atype)
+	c.JSON(http.StatusOK, Success)
 }
 
 // FavoriteList all users have same favorite video list
