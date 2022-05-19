@@ -1,5 +1,7 @@
 package model
 
+// 附带omitempty表示: 如果该字段不存在，则转化成json时不包含默认值
+
 //json其实对应前端的 键
 //结构体名称+ID 即可设置外键
 type Video struct {

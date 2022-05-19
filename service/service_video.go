@@ -53,6 +53,6 @@ func SelectVideosByUserID(UserID int64) []model.Video {
 }
 
 //插入新发布的视频
-func InsertNewVideo(video model.Video) error {
+func InsertNewVideo(video *model.Video) error {
 	return dao.InsertNewVideo(video)
 }

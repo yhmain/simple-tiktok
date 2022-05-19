@@ -1,10 +1,9 @@
- 
-[Github地址](https://github.com/yhmain/simple-tiktok)     
 
 克隆本分支项目：
 `git clone -b main --depth=1 https://github.com/yhmain/simple-tiktok/`
 
 gin-jwt
+[Github地址](https://github.com/yhmain/simple-tiktok)  
 
 # 项目名称：simple-tiktok
 main 分支
@@ -73,13 +72,19 @@ main.go：主函数
 router.go：初始化路由  
 tiktok.sql：数据库设计文件  
 
+## 技术栈
+语言：Go  
+底层存储：MySQL
+ORM框架：GORM
+HTTP框架：Gin
+
 
 ## 功能说明
 
 接口功能不完善，仅作为示例
 
 * 用户登录数据保存在内存中，单次运行过程中有效
-* 视频上传后会保存到本地 public 目录中，访问时用 ...待续
+* 视频上传后会保存到本地 public 目录中，访问时用 
 * 注意app里面配置前缀url为服务器（自己电脑）的 http://ip:port
 
 ## 测试数据

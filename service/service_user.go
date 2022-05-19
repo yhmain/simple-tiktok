@@ -47,6 +47,6 @@ func SelectUserByNamePwd(name, pwd string) (model.User, bool) {
 }
 
 //插入新用户
-func InsertNewUser(user model.User) error {
+func InsertNewUser(user *model.User) error {
 	return dao.InsertNewUser(user)
 }

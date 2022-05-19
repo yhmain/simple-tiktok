@@ -30,7 +30,7 @@ func SelectUserByNamePwd(name, pwd string) model.User {
 
 //插入新用户
 //返回是否出错，为nil则表示插入成功
-func InsertNewUser(user model.User) error {
-	result := MyDB.Create(&user)
+func InsertNewUser(user *model.User) error {
+	result := MyDB.Create(user)
 	return result.Error
 }
