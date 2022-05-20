@@ -34,6 +34,8 @@ const (
 	InvalidTimeCode = 30001
 
 	TooLongInputCode = 40001
+
+	UpdateSQLCode = 50001
 )
 
 //供其他.go文件使用自定义报错信息
@@ -57,6 +59,8 @@ var (
 
 	InvalidTimeErr  = NewResponse(InvalidTimeCode, "非法的时间戳")
 	TooLongInputErr = NewResponse(TooLongInputCode, "输入内容超过长度限制")
+
+	UpdateSQLErr = NewResponse(UpdateSQLCode, "数据库更新出错")
 )
 
 //返回一个错误信息的字符串

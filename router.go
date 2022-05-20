@@ -22,8 +22,8 @@ func initRouter(r *gin.Engine) {
 	apiRouter.GET("/publish/list/", controller.JWTAuthUserToken(), controller.PublishList) //用户发布的视频列表：2022/05/16完成
 
 	// extra apis - I
-	apiRouter.POST("/favorite/action/", controller.JWTAuthUserToken(), controller.FavoriteAction) //用户的点赞操作
-	apiRouter.GET("/favorite/list/", controller.FavoriteList)
+	apiRouter.POST("/favorite/action/", controller.JWTAuthUserToken(), controller.FavoriteAction) //登录用户的点赞操作：2022/05/19完成
+	apiRouter.GET("/favorite/list/", controller.JWTAuthUserToken(), controller.FavoriteList)      //获取登录用户的所有点赞视频：2022/05/19完成
 	apiRouter.POST("/comment/action/", controller.CommentAction)
 	apiRouter.GET("/comment/list/", controller.CommentList)
 

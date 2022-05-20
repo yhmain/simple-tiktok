@@ -56,3 +56,8 @@ func SelectVideosByUserID(UserID int64) []model.Video {
 func InsertNewVideo(video *model.Video) error {
 	return dao.InsertNewVideo(video)
 }
+
+//赞操作
+func UpdateVideoIsFavorite(Vid int64, ActionType int) error {
+	return dao.UpdateVideoIsFavorite(Vid, ActionType)
+}
