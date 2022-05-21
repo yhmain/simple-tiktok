@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,10 +14,13 @@ func TestSelectVideosByTime(t *testing.T) {
 	assert.Equal(t, 30, len(vid))
 }
 
-//测试 用户ID：1发布的所有视频
+//测试 用户ID：3发布的所有视频
 func TestSelectVideosByUserID(t *testing.T) {
-	videos := SelectVideosByUserID(1)
-	assert.Equal(t, 8, len(videos))
+	videos := SelectVideosByUserID(3)
+	for _, v := range videos {
+		fmt.Printf("%v--%v\n", v.Id, v.CoverUrl)
+	}
+	assert.Equal(t, 7, len(videos))
 }
 
 //测试 插入新发布的视频

@@ -48,7 +48,8 @@ simple-tiktok
 ```
 - 注意app里面配置前缀url为服务器（自己电脑）的 http://ip:port  
 - 关于.apk文件，可以安装在手机上，也可在电脑上安装一个安卓模拟器。  
-这里我使用的是[逍遥模拟器](https://www.xyaz.cn/)
+这里我使用的是[MuMu模拟器](https://mumu.163.com/)
+（注意：其他方式可能会在发布视频的时候出现上传错误）
 
 Linux系统运行方式：`go build && ./simple-tiktok`  
 
@@ -84,3 +85,9 @@ HTTP框架：Gin
 ## 测试数据
 
 //测试数据写在 demo_data.go 中，用于列表接口的 mock 测试
+
+## 问题难点：
+1. Go语言如何从一个mp4文件中抽取某一帧作为封面？  
+	ffmpeg  
+2. 池化技术的应用
+3. 
