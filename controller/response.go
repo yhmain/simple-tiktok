@@ -16,14 +16,14 @@ type Response struct {
 const (
 	SuccessCode         = 0
 	ServiceErrCode      = 10001
-	UserNotLoginErrCode = 10003
-	UserNotExistErrCode = 10004
+	UserNotLoginErrCode = 10002
+	UserNotExistErrCode = 10003
 
-	UserAlreadyExistErrCode = 10005
-	GenNewUserIDErrCode     = 10006
-	InsertNewUserCode       = 10007
-	InvalidUserIDCode       = 10008
-	InvalidVideoIDCode      = 10009
+	UserAlreadyExistErrCode = 10004
+	GenNewUserIDErrCode     = 10005
+	InsertNewUserCode       = 10006
+	InvalidUserIDCode       = 10007
+	InvalidVideoIDCode      = 10008
 
 	AuthHeaderEmptyCode  = 20001
 	AuthHeaderFormatCode = 20002
@@ -31,9 +31,12 @@ const (
 	GenTokenFailedCode   = 20004
 	ValidateTokenCode    = 20005
 
-	InvalidTimeCode = 30001
+	InvalidTimeCode        = 30001
+	TooLongInputCode       = 30002
+	UploadFileFailedCode   = 30003
+	ExtractVideoFailedCode = 30004
 
-	TooLongInputCode = 40001
+	UpdateSQLCode = 50001
 )
 
 //供其他.go文件使用自定义报错信息
@@ -55,8 +58,12 @@ var (
 	GenTokenFailedErr   = NewResponse(GenTokenFailedCode, "鉴权Token生成失败")
 	ValidateTokenErr    = NewResponse(ValidateTokenCode, "Token校验失败")
 
-	InvalidTimeErr  = NewResponse(InvalidTimeCode, "非法的时间戳")
-	TooLongInputErr = NewResponse(TooLongInputCode, "输入内容超过长度限制")
+	InvalidTimeErr        = NewResponse(InvalidTimeCode, "非法的时间戳")
+	TooLongInputErr       = NewResponse(TooLongInputCode, "输入内容超过长度限制")
+	UploadFileFailedErr   = NewResponse(UploadFileFailedCode, "文件上传失败")
+	ExtractVideoFailedErr = NewResponse(ExtractVideoFailedCode, "视频封面生成失败")
+
+	UpdateSQLErr = NewResponse(UpdateSQLCode, "数据库更新出错")
 )
 
 //返回一个错误信息的字符串

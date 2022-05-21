@@ -1,14 +1,12 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/yhmain/simple-tiktok/model"
 )
 
 //NOTE: 以下为基于jwt-go实现的token权限认证
@@ -65,7 +63,8 @@ func JWTAuthUserToken() func(c *gin.Context) {
 			return
 		}
 		//获取user_id，并与token解析出来的进行对比
-		//在获取publish list时，本来就没有user_id !!!!!
+		//在获取publish list时，没有user_id
+		//投稿时publish/action，没有user_id
 		paramID := c.Query("user_id")
 		if paramID != "" && strconv.FormatInt(claims.UserID, 10) != paramID {
 			c.JSON(http.StatusOK, ValidateTokenErr) //token校验失败
@@ -78,21 +77,17 @@ func JWTAuthUserToken() func(c *gin.Context) {
 	}
 }
 
-//还在测试中
 // 自定义函数：JWTAuthPublishAction 基于JWT的认证中间件
 func JWTAuthPublishAction() func(c *gin.Context) {
 	return func(c *gin.Context) {
-		token := c.MustGet("token").(string) //从上下文中获取已经保存的token
-		publishToken := c.Query("token")     //获取token
-		if publishToken != token {
-			c.JSON(http.StatusOK, ValidateTokenErr.Error())
+		token := c.PostForm("token")
+		_, claims, err := ParseToken(token)
+		if err != nil {
+			c.JSON(http.StatusOK, InvalidTokenErr) //token解析失败
 			c.Abort()
 			return
 		}
-		user := c.MustGet("user").(model.User) //从上下文中获取已经保存的user
-		title := c.Query("title")              //获取 title
-		fmt.Printf("%v \n%v\n", user, title)
-		c.Abort()
-		// c.Next() // 去执行后续的处理函数
+		c.Set("usertoken", claims.UserToken)
+		c.Next() // 执行后续的处理函数
 	}
 }
